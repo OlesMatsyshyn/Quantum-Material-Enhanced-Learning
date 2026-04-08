@@ -1,0 +1,206 @@
+@Article{Taglietti2026arxiv,
+  author  = {Taglietti, Fabiana and Pulici, Andrea and Roxburgh, Maxwell and Seguini, Gabriele and Vidamour, Ian and Menzel, Stephan and Franco, Edoardo and Laus, Michele and Vasilaki, Eleni and Perego, Michele and Hayward, Thomas J. and Fanciulli, Marco and Gartside, Jack C.},
+  journal = {arXiv:2601.15340},
+  title   = {Learning Nonlinear Heterogeneity in Physical {K}olmogorov-{A}rnold {N}etworks},
+  year    = {2026},
+  number  = {.},
+  pages   = {.},
+  volume  = {.},
+  doi     = {https://doi.org/10.48550/arXiv.2601.15340},
+}
+
+@Article{Wang2024NatureCommSc,
+  author    = {Wang, Hao and Hu, Jianqi and Morandi, Andrea and Nardi, Alfonso and Xia, Fei and Li, Xuanchen and Savo, Romolo and Liu, Qiang and Grange, Rachel and Gigan, Sylvain},
+  journal   = {Nature Computational Science},
+  title     = {Large-scale photonic computing with nonlinear disordered media},
+  year      = {2024},
+  issn      = {2662-8457},
+  month     = jun,
+  number    = {6},
+  pages     = {429--439},
+  volume    = {4},
+  doi       = {10.1038/s43588-024-00644-1},
+  publisher = {Springer Science and Business Media LLC},
+}
+
+@Article{Yildirim2024,
+  author    = {Yildirim, Mustafa and Dinc, Niyazi Ulas and Oguz, Ilker and Psaltis, Demetri and Moser, Christophe},
+  journal   = {Nature Photonics},
+  title     = {Nonlinear processing with linear optics},
+  year      = {2024},
+  issn      = {1749-4893},
+  month     = jul,
+  number    = {10},
+  pages     = {1076--1082},
+  volume    = {18},
+  doi       = {10.1038/s41566-024-01494-z},
+  publisher = {Springer Science and Business Media LLC},
+}
+
+@Article{liu2024kan20kolmogorovarnoldnetworks,
+  author        = {Ziming Liu and Pingchuan Ma and Yixuan Wang and Wojciech Matusik and Max Tegmark},
+  journal       = {arxiv},
+  title         = {KAN 2.0: Kolmogorov-Arnold Networks Meet Science},
+  year          = {2024},
+  archiveprefix = {arXiv},
+  doi           = {https://doi.org/10.48550/arXiv.2408.10205},
+  eprint        = {2408.10205},
+}
+
+ 
+@Article{Yoshikawa2017,
+  author    = {Yoshikawa, Naotaka and Tamaya, Tomohiro and Tanaka, Koichiro},
+  journal   = {Science},
+  title     = {High-harmonic generation in graphene enhanced by elliptically polarized light excitation},
+  year      = {2017},
+  issn      = {1095-9203},
+  month     = may,
+  number    = {6339},
+  pages     = {736--738},
+  volume    = {356},
+  doi       = {10.1126/science.aam8861},
+  publisher = {American Association for the Advancement of Science (AAAS)},
+}
+
+@Article{Kanega2024,
+  author    = {Kanega, Minoru and Sato, Masahiro},
+  journal   = {Physical Review B},
+  title     = {High-harmonic generation in graphene under the application of a DC electric current: From perturbative to nonperturbative regime},
+  year      = {2024},
+  issn      = {2469-9969},
+  month     = jul,
+  number    = {3},
+  pages     = {035303},
+  volume    = {110},
+  doi       = {10.1103/physrevb.110.035303},
+  publisher = {American Physical Society (APS)},
+}
+
+@Article{Hafez2018,
+  author    = {Hafez, Hassan A. and Kovalev, Sergey and Deinert, Jan-Christoph and Mics, Zoltán and Green, Bertram and Awari, Nilesh and Chen, Min and Germanskiy, Semyon and Lehnert, Ulf and Teichert, Jochen and Wang, Zhe and Tielrooij, Klaas-Jan and Liu, Zhaoyang and Chen, Zongping and Narita, Akimitsu and Müllen, Klaus and Bonn, Mischa and Gensch, Michael and Turchinovich, Dmitry},
+  journal   = {Nature},
+  title     = {Extremely efficient terahertz high-harmonic generation in graphene by hot {D}irac fermions},
+  year      = {2018},
+  issn      = {1476-4687},
+  month     = sep,
+  number    = {7724},
+  pages     = {507--511},
+  volume    = {561},
+  doi       = {10.1038/s41586-018-0508-1},
+  publisher = {Springer Science and Business Media LLC},
+}
+
+
+@Article{Xia2024,
+  author    = {Xia, Fei and Kim, Kyungduk and Eliezer, Yaniv and Han, SeungYun and Shaughnessy, Liam and Gigan, Sylvain and Cao, Hui},
+  journal   = {Nature Photonics},
+  title     = {Nonlinear optical encoding enabled by recurrent linear scattering},
+  year      = {2024},
+  issn      = {1749-4893},
+  month     = jul,
+  number    = {10},
+  pages     = {1067--1075},
+  volume    = {18},
+  doi       = {10.1038/s41566-024-01493-0},
+  publisher = {Springer Science and Business Media LLC},
+}
+
+ 
+@Article{Zhou2019NatureNanotech,
+  author    = {Zhou, Feichi and Zhou, Zheng and Chen, Jiewei and Choy, Tsz Hin and Wang, Jingli and Zhang, Ning and Lin, Ziyuan and Yu, Shimeng and Kang, Jinfeng and Wong, H.-S. Philip and Chai, Yang},
+  journal   = {Nature Nanotechnology},
+  title     = {Optoelectronic resistive random access memory for neuromorphic vision sensors},
+  year      = {2019},
+  issn      = {1748-3395},
+  month     = jul,
+  number    = {8},
+  pages     = {776--782},
+  volume    = {14},
+  doi       = {10.1038/s41565-019-0501-3},
+  publisher = {Springer Science and Business Media LLC},
+}
+
+ 
+@Article{Tong2024NatureComm,
+  author    = {Tong, Lei and Bi, Yali and Wang, Yilun and Peng, Kai and Huang, Xinyu and Ju, Wei and Peng, Zhuiri and Li, Zheng and Xu, Langlang and Lin, Runfeng and Yu, Xiangxiang and Shi, Wenhao and Yu, Hui and Sun, Huajun and Xue, Kanhao and He, Qiang and Tang, Ming and Xu, Jianbin and Zhang, Xinliang and Miao, Jinshui and Jariwala, Deep and Bao, Wei and Miao, Xiangshui and Wang, Ping and Ye, Lei},
+  journal   = {Nature Communications},
+  title     = {Programmable nonlinear optical neuromorphic computing with bare {2D} material {M}o{S}2},
+  year      = {2024},
+  issn      = {2041-1723},
+  month     = nov,
+  number    = {1},
+  volume    = {15},
+  doi       = {10.1038/s41467-024-54776-z},
+  publisher = {Springer Science and Business Media LLC},
+}
+
+ 
+@Article{Zhang2024NatureComm,
+  author    = {Zhang, Tian and Guo, Xin and Wang, Pan and Fan, Xinyi and Wang, Zichen and Tong, Yan and Wang, Decheng and Tong, Limin and Li, Linjun},
+  journal   = {Nature Communications},
+  title     = {High performance artificial visual perception and recognition with a plasmon-enhanced {2D} material neural network},
+  year      = {2024},
+  issn      = {2041-1723},
+  month     = mar,
+  number    = {1},
+  volume    = {15},
+  doi       = {10.1038/s41467-024-46867-8},
+  publisher = {Springer Science and Business Media LLC},
+}
+
+ 
+@Article{Wang2020SciAdv,
+  author    = {Wang, Chen-Yu and Liang, Shi-Jun and Wang, Shuang and Wang, Pengfei and Li, Zhu’an and Wang, Zhongrui and Gao, Anyuan and Pan, Chen and Liu, Chuan and Liu, Jian and Yang, Huafeng and Liu, Xiaowei and Song, Wenhao and Wang, Cong and Cheng, Bin and Wang, Xiaomu and Chen, Kunji and Wang, Zhenlin and Watanabe, Kenji and Taniguchi, Takashi and Yang, J. Joshua and Miao, Feng},
+  journal   = {Science Advances},
+  title     = {Gate-tunable van der {W}aals heterostructure for reconfigurable neural network vision sensor},
+  year      = {2020},
+  issn      = {2375-2548},
+  month     = jun,
+  number    = {26},
+  volume    = {6},
+  doi       = {10.1126/sciadv.aba6173},
+  publisher = {American Association for the Advancement of Science (AAAS)},
+}
+
+ 
+@Article{Mennel2020Nature,
+  author    = {Mennel, Lukas and Symonowicz, Joanna and Wachter, Stefan and Polyushkin, Dmitry K. and Molina-Mendoza, Aday J. and Mueller, Thomas},
+  journal   = {Nature},
+  title     = {Ultrafast machine vision with {2D} material neural network image sensors},
+  year      = {2020},
+  issn      = {1476-4687},
+  month     = mar,
+  number    = {7797},
+  pages     = {62--66},
+  volume    = {579},
+  doi       = {10.1038/s41586-020-2038-x},
+  publisher = {Springer Science and Business Media LLC},
+}
+
+ 
+@Article{Choi2025npjUnconvComp,
+  author    = {Choi, Yunseok and Jeong, Siwoo and Jeong, Hyeonu and Han, Sangmoon and Ko, Jonghyeon and Yu, Si Eun and Xu, Zhihao and Chae, Min Seong and Son, Minjae and Meng, Yuan and Xu, Shijue and Kang, Ji-Hoon and Mun, Sungchul and Bae, Sang‑Hoon},
+  journal   = {npj Unconventional Computing},
+  title     = {Advanced {AI} computing enabled by {2D} material-based neuromorphic devices},
+  year      = {2025},
+  issn      = {3004-8672},
+  month     = apr,
+  number    = {1},
+  volume    = {2},
+  doi       = {10.1038/s44335-025-00023-7},
+  publisher = {Springer Science and Business Media LLC},
+}
+
+ 
+@Article{Xie2025,
+  author    = {Xie, Pengshan and Li, Dengji and Wang, Weijun and Ho, Johnny C.},
+  journal   = {Small},
+  title     = {2{D} Materials for Emerging Neuromorphic Vision: From Devices to In‐Sensor Computing},
+  year      = {2025},
+  issn      = {1613-6829},
+  month     = jul,
+  doi       = {10.1002/smll.202503717},
+  publisher = {Wiley},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
