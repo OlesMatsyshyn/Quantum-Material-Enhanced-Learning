@@ -18,7 +18,7 @@ ENTRY_KEY_PATTERN = re.compile(r"@\w+\s*\{\s*([^,\s]+)", re.IGNORECASE)
 DOI_FIELD_PATTERN = re.compile(r"\bdoi\s*=\s*\{?([^},\n]+)", re.IGNORECASE)
 FIELD_PATTERN = re.compile(
     r"^\s*([A-Za-z][A-Za-z0-9_-]*)\s*=\s*(.+?)\s*,?\s*$",
-    re.MULTILINE,
+    re.MULTILINE | re.DOTALL,
 )
 WORD_PATTERN = re.compile(r"[A-Za-z0-9]+")
 STOP_WORDS = {
@@ -183,23 +183,37 @@ def split_bibtex_fields(body: str) -> list[str]:
     quote_open = False
 
     for char in body:
-        current.append(char)
         if char == '"' and brace_depth == 0:
             quote_open = not quote_open
         elif char == "{":
             brace_depth += 1
         elif char == "}":
             brace_depth = max(0, brace_depth - 1)
-        elif char == "\n" and brace_depth == 0 and not quote_open:
+        elif char == "," and brace_depth == 0 and not quote_open:
             candidate = "".join(current).strip()
             if candidate:
                 fields.append(candidate)
             current = []
+            continue
+        current.append(char)
 
     trailing = "".join(current).strip()
     if trailing:
         fields.append(trailing)
     return fields
+
+
+def extract_bibtex_body(entry: str) -> str:
+    match = ENTRY_KEY_PATTERN.search(entry)
+    if not match:
+        return ""
+
+    body = entry[match.end() :].strip()
+    if body.startswith(","):
+        body = body[1:].strip()
+    if body.endswith("}"):
+        body = body[:-1].strip()
+    return body
 
 
 def strip_outer_delimiters(value: str) -> str:
@@ -212,13 +226,12 @@ def strip_outer_delimiters(value: str) -> str:
 
 
 def parse_bibtex_fields(entry: str) -> dict[str, str]:
-    lines = entry.splitlines()
-    if len(lines) < 2:
+    body = extract_bibtex_body(entry)
+    if not body:
         return {}
 
-    middle = "\n".join(lines[1:-1])
     fields: dict[str, str] = {}
-    for chunk in split_bibtex_fields(middle):
+    for chunk in split_bibtex_fields(body):
         match = FIELD_PATTERN.match(chunk)
         if not match:
             continue
