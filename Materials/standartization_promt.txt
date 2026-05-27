@@ -1,0 +1,288 @@
+You are adding a new material model to the standardized thin-film nonlinear-optics pipeline.
+
+Do not invent a new architecture. Convert the material into the existing two-stage convention:
+
+Stage 1:
+A material-specific MATLAB script computes standardized band data.
+
+Stage 2:
+The universal response calculator computes S_photo, Omega_z_photo, D_photo, and J_photo using the same formulas for every material.
+
+The material-specific script must only handle:
+- Hamiltonian definition
+- velocity operators
+- eigensystem
+- Berry curvature
+- conversion to standardized band_data units
+- diagnostic plots
+
+The universal response formulas must not be duplicated or modified inside the material script.
+
+============================================================
+UNIVERSAL SAVED UNITS
+============================================================
+
+All saved band_data and response_data must use:
+
+energy   = meV
+length   = nm
+momentum = nm^{-1}
+
+Therefore:
+
+energy(ix,iy,n)    must be in meV
+vx(ix,iy,n)        must be in meV nm
+vy(ix,iy,n)        must be in meV nm
+Omega(ix,iy,n)     must be in nm^2
+kx_grid, ky_grid   must be in nm^{-1}
+dk_area            must correspond to nm^{-2}/(2*pi)^2
+
+Native model units may be different, but final saved variables must be converted.
+
+Common conversions:
+
+1 eV = 1000 meV
+1 Angstrom = 0.1 nm
+1 Angstrom^{-1} = 10 nm^{-1}
+
+If the native model uses eV and Angstrom^{-1}:
+
+E_meV = 1000 * E_eV
+
+k_nm^{-1} = 10 * k_A^{-1}
+
+v_native = dE[eV]/dk[A^{-1}] has units eV Angstrom
+v_meV_nm = 100 * v_native
+
+Omega_native has units Angstrom^2
+Omega_nm2 = 0.01 * Omega_native
+
+D_native has units Angstrom
+D_nm = 0.1 * D_native
+
+If a final J is computed natively in meV Angstrom:
+J_meV_nm = 0.1 * J_meV_A
+
+If a final J is computed natively in eV Angstrom:
+J_meV_nm = 100 * J_eV_A
+
+============================================================
+STAGE 1: STANDARD BAND-DATA SCHEMA
+============================================================
+
+The material script should save:
+
+band_data.material_name
+band_data.model_name
+band_data.parameters
+band_data.native_units
+band_data.saved_units
+
+band_data.kx_grid      % [Nx], nm^{-1}
+band_data.ky_grid      % [Ny], nm^{-1}
+band_data.dk_area      % scalar, includes /(2*pi)^2 convention if used that way
+
+band_data.energy       % [Nx,Ny,Nb], meV
+band_data.vx           % [Nx,Ny,Nb], meV nm
+band_data.vy           % [Nx,Ny,Nb], meV nm
+band_data.Omega        % [Nx,Ny,Nb], nm^2
+
+band_data.band_ids     % optional
+band_data.grid_info
+band_data.notes
+
+Use:
+
+save(output_name, '-struct', 'band_data')
+
+Do not name a local variable `grid`, because MATLAB has the plotting command `grid on`.
+Use `grid_info` locally, then save:
+
+band_data.grid_info = grid_info
+
+Do not save huge eigenvector arrays or full band-basis matrices unless a DEBUG_SAVE_RAW flag is enabled.
+
+============================================================
+BERRY CURVATURE CONVENTION
+============================================================
+
+For each band n, compute:
+
+Omega_n^{xy}(k) =
+    -2 Im sum_{m != n}
+        <n|Vx|m><m|Vy|n> / (E_m - E_n)^2
+
+or the algebraically equivalent convention already used in the existing scripts, as long as the same sign convention is documented.
+
+Velocity convention:
+
+v_n^x = <n|dH/dkx|n> = partial_x E_n
+v_n^y = <n|dH/dky|n> = partial_y E_n
+
+Saved vx, vy must be in meV nm.
+
+============================================================
+STAGE 2: UNIVERSAL RESPONSE FORMULAS
+============================================================
+
+Do not duplicate these formulas in the material script. They belong in the universal response calculator.
+
+The universal response calculator must use:
+
+Omega_z(mu) =
+    sum_n int_k f_n(k,mu) Omega_n^{xy}(k)
+
+D^i(mu) =
+    - sum_n int_k Omega_n^{xy}(k) partial_i f_n(k,mu)
+
+S^{gamma j}(mu) =
+    - sum_n int_k f'_n(E) v_n^j v_n^gamma
+
+J^{i j gamma}(mu) =
+    - sum_n int_k f'_n(E) v_n^j partial_i v_n^gamma
+
+where:
+
+x = 1, y = 2
+S_photo(mu,gamma,j)
+D_photo(mu,i)
+J_photo(mu,i,j,gamma)
+
+and:
+
+partial_i f = f'(E) v_i
+
+The stored BCD sign is always:
+
+D_photo(:,i) = - int_k Omega_xy partial_i f
+
+Do not allow material-specific sign fixes.
+
+============================================================
+FINAL RESPONSE-DATA SCHEMA
+============================================================
+
+The universal response calculator should save:
+
+response_data.material_name
+response_data.model_name
+response_data.version = 'v1_response_objects'
+
+response_data.mu_grid
+response_data.S_photo
+response_data.Omega_z_photo
+response_data.D_photo
+response_data.J_photo
+
+response_data.units.energy = 'meV'
+response_data.units.length = 'nm'
+response_data.units.momentum = 'nm^{-1}'
+response_data.units.S = 'meV'
+response_data.units.Omega_z = 'dimensionless'
+response_data.units.D = 'nm'
+response_data.units.J = 'meV nm'
+
+response_data.index_convention =
+    '1=x, 2=y. S(mu,gamma,j), D(mu,i), J(mu,i,j,gamma).'
+
+response_data.definitions.Omega_z =
+    'Omega_z = sum_n int_k f_n Omega_n^{xy}'
+
+response_data.definitions.D =
+    'D^i = - sum_n int_k Omega_n^{xy} partial_i f_n'
+
+response_data.definitions.S =
+    'S^{gamma j} = - sum_n int_k fprime(E_n) v_n^j v_n^gamma'
+
+response_data.definitions.J =
+    'J^{i j gamma} = - sum_n int_k fprime(E_n) v_n^j partial_i v_n^gamma'
+
+response_data.parameters
+response_data.grid_info
+
+Use:
+
+save(output_name, '-struct', 'response_data')
+
+============================================================
+DIAGNOSTIC PLOTS REQUIRED
+============================================================
+
+Each material script should produce lightweight diagnostic plots:
+
+1. Band-structure slice:
+   - simple 1D cut, e.g. ky = 0 and kx varying
+   - x-axis: k [nm^{-1}]
+   - y-axis: E [meV]
+   - title should include material name
+
+2. Berry curvature map for one representative band:
+   - axes in nm^{-1}
+   - colorbar
+   - title includes band index
+
+The universal response calculator should produce response plots:
+
+1. D_photo(:,1), D_photo(:,2) versus mu_grid
+2. S_photo(:,1,1), S_photo(:,2,2), optionally S_photo(:,1,2)
+3. J_photo(:,1,1,1), J_photo(:,2,2,2), optionally J_photo(:,1,1,2)
+4. Omega_z_photo versus mu_grid
+
+Labels:
+
+mu [meV]
+D [nm]
+S [meV]
+J [meV nm]
+Omega_z dimensionless
+
+============================================================
+PROGRESS REPORTING
+============================================================
+
+Use textprogressbar consistently for expensive loops.
+
+For example:
+
+textprogressbar('>> calculating E, velocity, Berry curvature: ');
+for ix = 1:Nx
+    textprogressbar(fix(100*ix/Nx));
+    ...
+end
+textprogressbar(' done.');
+
+Use progress updates only on the outer loop of nested loops.
+
+If textprogressbar.m is absent, use or add the shared fallback textprogressbar.m in the repository.
+
+============================================================
+VALIDATION
+============================================================
+
+After adding the material, run or update the checker.
+
+The checker should verify:
+
+1. Required fields exist.
+2. Unit strings match exactly.
+3. size(S_photo,2:3) = [2,2]
+4. size(D_photo,2) = 2
+5. size(J_photo,2:4) = [2,2,2]
+6. Omega_z_photo is [Nmu,1]
+7. D sign convention is documented as:
+       D^i = - int_k Omega_xy partial_i f
+8. No final response-object file requires material-specific sign/unit fixes in the transmission code.
+
+Missing .mat files should be reported as "not generated yet", not as code failures.
+
+============================================================
+IMPORTANT RESTRICTIONS
+============================================================
+
+Do not rewrite working Hamiltonians.
+Do not change physical parameters unless explicitly requested.
+Do not duplicate universal response formulas in material scripts.
+Do not introduce material-specific fixes in the transmission code.
+Do not name local variables `grid`; use `grid_info`.
+Do not optimize aggressively.
+First make a reduced-grid TEST_MODE work, then allow production grid.

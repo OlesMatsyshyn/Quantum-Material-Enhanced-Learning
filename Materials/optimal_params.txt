@@ -1,0 +1,31 @@
+Suggested starting windows for nonlinear-transmission tests
+
+In each material, the driving frequency is an external input parameter. In practice, it should be chosen below the relevant interband or vertical-transition scale of the model, so that the response is dominated by the intended low-energy nonlinear transport objects rather than by strong resonant absorption.
+
+Short operational summary:
+
+BLG:
+    mu ≈ 3 meV
+    hbar*omega ≈ 0.5–2 meV
+
+    This is for the fixed parameter set in the basic bilayer-graphene code. The frequency should be well below the apparent low-energy gap scale, roughly much smaller than 5 meV. Since 1 meV ≈ 0.242 THz, 5 meV ≈ 1.2 THz.
+
+WTe2:
+    mu ≈ 70 meV
+    hbar*omega ≈ 10–80 meV
+
+    This is a metallic regime. Frequencies below about 100 meV are a reasonable starting range. In this model, vertical transitions may be partially suppressed because of the bent band structure, so the useful frequency window may be broader than a naive gap estimate suggests.
+
+MBT:
+    mu ≈ 40 meV
+    hbar*omega ≈ 10–20 meV
+
+    This is currently a very vanilla MBT model. In the unstrained/unbiased case, most nonlinear objects are expected to be very small or symmetry-forbidden. MBT is therefore mainly useful as a control case unless additional symmetry-breaking knobs, such as phenomenological mass anisotropy or layer bias, are introduced.
+
+TBG:
+    mu ≈ 3.1428 meV
+    hbar*omega ≈ 5–10 meV
+
+    TBG is currently the most promising material in this set. The flat-band structure should make it especially sensitive to low-frequency nonlinear response. This window should probe the low-energy flat-band physics without unnecessarily entering high-frequency interband effects.
+
+For command-line runs, these values correspond to the --mu-meV and --omega-meV inputs in transmission_from_response.py.
